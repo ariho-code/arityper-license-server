@@ -312,15 +312,31 @@ def download_file(filename):
         if filename not in allowed_files:
             return jsonify({'error': 'File not found'}), 404
         
-        file_path = os.path.join(os.getcwd(), filename)
-        if not os.path.exists(file_path):
+        # Try multiple possible file paths for production deployment
+        possible_paths = [
+            os.path.join(os.getcwd(), filename),
+            os.path.join(os.path.dirname(__file__), filename),
+            os.path.join('/opt/render/project/src', filename),
+            filename  # Direct path if file is in current directory
+        ]
+        
+        file_path = None
+        for path in possible_paths:
+            if os.path.exists(path):
+                file_path = path
+                break
+        
+        if not file_path:
+            app.logger.error(f"File not found in any of these paths: {possible_paths}")
             return jsonify({'error': 'File not found'}), 404
         
+        app.logger.info(f"Serving file: {file_path}")
         return send_file(file_path, 
                         as_attachment=True, 
                         download_name=filename,
                         mimetype='application/octet-stream')
     except Exception as e:
+        app.logger.error(f"Download error: {str(e)}")
         return jsonify({'error': str(e)}), 500
 
 # API endpoint for latest version info
