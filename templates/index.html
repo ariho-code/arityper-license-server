@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AriTyper - License Request</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+        
+        .container {
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+            max-width: 600px;
+            width: 100%;
+            overflow: hidden;
+        }
+        
+        .header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 30px;
+            text-align: center;
+        }
+        
+        .header h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+        }
+        
+        .header p {
+            opacity: 0.9;
+            font-size: 1.1em;
+        }
+        
+        .form-container {
+            padding: 40px;
+        }
+        
+        .form-group {
+            margin-bottom: 25px;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: #333;
+        }
+        
+        .form-group input {
+            width: 100%;
+            padding: 15px;
+            border: 2px solid #e0e0e0;
+            border-radius: 10px;
+            font-size: 16px;
+            transition: border-color 0.3s;
+        }
+        
+        .form-group input:focus {
+            outline: none;
+            border-color: #667eea;
+        }
+        
+        .submit-btn {
+            width: 100%;
+            padding: 18px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            border-radius: 10px;
+            font-size: 18px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+        
+        .submit-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(102, 126, 234, 0.3);
+        }
+        
+        .submit-btn:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+            transform: none;
+        }
+        
+        .message {
+            padding: 15px;
+            border-radius: 10px;
+            margin-top: 20px;
+            display: none;
+        }
+        
+        .message.success {
+            background: #d4edda;
+            color: #155724;
+            border: 1px solid #c3e6cb;
+        }
+        
+        .message.error {
+            background: #f8d7da;
+            color: #721c24;
+            border: 1px solid #f5c6cb;
+        }
+        
+        .whatsapp-info {
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 10px;
+            margin-bottom: 25px;
+            border-left: 4px solid #25d366;
+        }
+        
+        .whatsapp-info h3 {
+            color: #25d366;
+            margin-bottom: 10px;
+        }
+        
+        .whatsapp-info p {
+            color: #666;
+            line-height: 1.6;
+        }
+        
+        .device-id-help {
+            background: #e3f2fd;
+            padding: 15px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+            border-left: 4px solid #2196f3;
+        }
+        
+        .device-id-help h4 {
+            color: #1976d2;
+            margin-bottom: 8px;
+        }
+        
+        .device-id-help p {
+            color: #666;
+            font-size: 14px;
+            line-height: 1.5;
+        }
+        
+        .loading {
+            display: none;
+            text-align: center;
+            margin-top: 20px;
+        }
+        
+        .spinner {
+            border: 3px solid #f3f3f3;
+            border-top: 3px solid #667eea;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            animation: spin 1s linear infinite;
+            margin: 0 auto 10px;
+        }
+        
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        
+        .admin-link {
+            text-align: center;
+            margin-top: 30px;
+            padding-top: 20px;
+            border-top: 1px solid #e0e0e0;
+        }
+        
+        .admin-link a {
+            color: #667eea;
+            text-decoration: none;
+            font-size: 14px;
+        }
+        
+        .admin-link a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>⚡ AriTyper</h1>
+            <p>License Request Portal</p>
+        </div>
+        
+        <div class="form-container">
+            <div class="whatsapp-info">
+                <h3>📱 WhatsApp Support</h3>
+                <p>Send your Device ID to WhatsApp: <strong>+256 760 730 254</strong><br>
+                You'll receive your license key within minutes after approval.</p>
+            </div>
+            
+            <div class="device-id-help">
+                <h4>🔍 How to find your Device ID?</h4>
+                <p>Open AriTyper app → Help menu → "🔑 My Device ID" → Copy the ID shown</p>
+            </div>
+            
+            <form id="licenseForm">
+                <div class="form-group">
+                    <label for="device_id">Device ID *</label>
+                    <input type="text" id="device_id" name="device_id" required 
+                           placeholder="ARI3-XXXXXXXXXXXXXXXX" 
+                           pattern="ARI3-[A-F0-9]{16}"
+                           title="Device ID should start with ARI3- followed by 16 characters">
+                </div>
+                
+                <div class="form-group">
+                    <label for="whatsapp_number">WhatsApp Number</label>
+                    <input type="tel" id="whatsapp_number" name="whatsapp_number" 
+                           placeholder="+256 XXX XXX XXX"
+                           pattern="[+][0-9]{10,15}"
+                           title="Enter your WhatsApp number with country code">
+                </div>
+                
+                <div class="form-group">
+                    <label for="transaction_id">Transaction ID (Optional)</label>
+                    <input type="text" id="transaction_id" name="transaction_id" 
+                           placeholder="Payment transaction ID">
+                </div>
+                
+                <button type="submit" class="submit-btn">Submit License Request</button>
+            </form>
+            
+            <div class="loading">
+                <div class="spinner"></div>
+                <p>Submitting your request...</p>
+            </div>
+            
+            <div id="message" class="message"></div>
+            
+            <div class="admin-link">
+                <a href="/admin">Admin Login</a>
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        document.getElementById('licenseForm').addEventListener('submit', async function(e) {
+            e.preventDefault();
+            
+            const form = e.target;
+            const submitBtn = form.querySelector('.submit-btn');
+            const loading = document.querySelector('.loading');
+            const message = document.getElementById('message');
+            
+            // Show loading
+            submitBtn.disabled = true;
+            loading.style.display = 'block';
+            message.style.display = 'none';
+            
+            // Get form data
+            const formData = new FormData(form);
+            const data = Object.fromEntries(formData);
+            
+            try {
+                const response = await fetch('/submit_request', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/x-www-form-urlencoded',
+                    },
+                    body: new URLSearchParams(data)
+                });
+                
+                const result = await response.json();
+                
+                // Hide loading
+                loading.style.display = 'none';
+                submitBtn.disabled = false;
+                
+                // Show message
+                message.className = `message ${result.success ? 'success' : 'error'}`;
+                message.textContent = result.message;
+                message.style.display = 'block';
+                
+                // Clear form on success
+                if (result.success) {
+                    form.reset();
+                }
+                
+            } catch (error) {
+                console.error('Error:', error);
+                loading.style.display = 'none';
+                submitBtn.disabled = false;
+                
+                message.className = 'message error';
+                message.textContent = 'Network error. Please try again.';
+                message.style.display = 'block';
+            }
+        });
+        
+        // Auto-format device ID input
+        document.getElementById('device_id').addEventListener('input', function(e) {
+            let value = e.target.value.toUpperCase();
+            if (!value.startsWith('ARI3-')) {
+                value = 'ARI3-' + value.replace(/^ARI3-?/, '');
+            }
+            e.target.value = value;
+        });
+    </script>
+</body>
+</html>
