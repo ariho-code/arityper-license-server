@@ -4,7 +4,7 @@ AriTyper License Management Server
 Web-based licensing system for AriTyper application
 """
 
-from flask import Flask, render_template, request, jsonify, redirect, url_for, session, flash
+from flask import Flask, render_template, request, jsonify, redirect, url_for, session, flash, send_file
 from flask_sqlalchemy import SQLAlchemy
 from werkzeug.security import generate_password_hash, check_password_hash
 from datetime import datetime, timedelta
@@ -301,6 +301,41 @@ def revoke_device():
         db.session.commit()
     
     return jsonify({'success': True, 'message': 'Device revoked'})
+
+# Download endpoint for the application
+@app.route('/download/<filename>')
+def download_file(filename):
+    """Serve the AriTyper executable file"""
+    try:
+        # Security: Only allow specific files
+        allowed_files = ['AriTyper_v3.exe']
+        if filename not in allowed_files:
+            return jsonify({'error': 'File not found'}), 404
+        
+        file_path = os.path.join(os.getcwd(), filename)
+        if not os.path.exists(file_path):
+            return jsonify({'error': 'File not found'}), 404
+        
+        return send_file(file_path, 
+                        as_attachment=True, 
+                        download_name=filename,
+                        mimetype='application/octet-stream')
+    except Exception as e:
+        return jsonify({'error': str(e)}), 500
+
+# API endpoint for latest version info
+@app.route('/api/latest_version')
+def latest_version():
+    """Return latest version information for the app"""
+    try:
+        return jsonify({
+            'success': True,
+            'version': '2.0.0',
+            'download_url': '/download/AriTyper_v3.exe',
+            'release_notes': 'Professional auto-typing software with enhanced features and security.'
+        })
+    except Exception as e:
+        return jsonify({'success': False, 'error': str(e)})
 
 # ══════════════════════════════════════════════════════════════════════════════
 #  Initialize Database
