@@ -54,7 +54,7 @@ except ImportError:
 
 # ─── App constants ─────────────────────────────────────────────────────────────
 APP_VERSION  = "3.0.0"
-SERVER_URL   = "https://arityper-api.onrender.com"
+SERVER_URL   = "https://arityper-license-server.onrender.com"
 LICENSE_DIR  = os.path.join(os.path.expanduser("~"), ".arityper")
 LICENSE_FILE = os.path.join(LICENSE_DIR, "license.dat")
 
