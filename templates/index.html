@@ -1278,13 +1278,13 @@
       
       if (data.success) {
         // Download the file
-        window.open(`http://localhost:5000${data.download_url}`, '_blank');
+        window.open(`https://arityper-license-server.onrender.com${data.download_url}`, '_blank');
         
         // Show success message
         showToast('Download started!', 'success');
       } else {
         // Fallback to direct download
-        window.location.href = '/download/AriTyper_v3.exe';
+        window.location.href = 'https://arityper-license-server.onrender.com/download/AriTyper_v3.exe';
         showToast('Downloading...', 'info');
       }
       
@@ -1294,7 +1294,7 @@
       
     } catch (error) {
       // Fallback to direct download on error
-      window.location.href = '/download/AriTyper_v3.exe';
+      window.location.href = 'https://arityper-license-server.onrender.com/download/AriTyper_v3.exe';
       showToast('Downloading...', 'info');
       
       // Reset button
